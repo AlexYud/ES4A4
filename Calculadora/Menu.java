@@ -25,7 +25,11 @@ public class Menu extends JFrame implements ActionListener {
 			}
 		} else if (e.getSource() == bSub) {
 			// Subtração
-			
+			try {
+				new Subtracao();
+			} catch(Exception ex) {
+				JOptionPane.showMessageDialog(null, ex);
+			}
 		} else if (e.getSource() == bMult) {
 			// Multiplicação
 			try {
@@ -35,7 +39,11 @@ public class Menu extends JFrame implements ActionListener {
 			}
 		} else if (e.getSource() == bDiv) {
 			// Divisão
-			
+			try {
+				new Divisao();
+			} catch(Exception ex) {
+				JOptionPane.showMessageDialog(null, ex);
+			}
 		} else {
 			if (JOptionPane.showConfirmDialog(bSair, "Deseja mesmo sair?") == 0) {
 				System.exit(0);
