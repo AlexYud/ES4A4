@@ -6,10 +6,14 @@ public abstract class Operacao {
 	double primeiroNum;
 	double segundoNum;
 	double resultado;
+	int reply = JOptionPane.NO_OPTION;
 	
 	public Operacao() {
 		// Inputs
-		this.primeiroNum = Double.parseDouble(JOptionPane.showInputDialog("Digite um número"));
-		this.segundoNum = Double.parseDouble(JOptionPane.showInputDialog("Digite mais um número"));
+		while(reply != JOptionPane.YES_OPTION) {
+			this.primeiroNum = Double.parseDouble(JOptionPane.showInputDialog("Digite um nï¿½mero"));
+			this.segundoNum = Double.parseDouble(JOptionPane.showInputDialog("Digite mais um nï¿½mero"));
+			reply = JOptionPane.showConfirmDialog(null, "Confirmar valores? (" + primeiroNum + " | " + segundoNum + ")", "ConfirmaÃ§Ã£o", JOptionPane.YES_NO_OPTION);
+		}
 	}
 }
