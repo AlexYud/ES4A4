@@ -8,7 +8,7 @@ public class Multiplicacao extends Operacao {
 		// Calculo
 		this.resultado = this.primeiroNum * this.segundoNum;
 		// Resultado
-		JOptionPane.showMessageDialog(null, "Resultado: " + this.resultado);
+		JOptionPane.showMessageDialog(null, "Resultado final: " + this.resultado);
 	}
 	
 }
