@@ -16,41 +16,57 @@ import javax.swing.JOptionPane;
 public class Menu extends JFrame implements ActionListener {
 
 	JButton bSom = new JButton("Soma");
-	JButton bSub = new JButton("SubtraÃ§Ã£o");
-	JButton bMult = new JButton("MultiplicaÃ§Ã£o");
-	JButton bDiv = new JButton("DivisÃ£o");
+	JButton bSub = new JButton("Subtração");
+	JButton bMult = new JButton("Multiplicação");
+	JButton bDiv = new JButton("Divisão");
+	JButton bRaiz = new JButton("Raiz");
 	JButton bSair = new JButton("Sair");
+	
+	private boolean upd;
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == bSom) {
 			// Soma
 			try {
+				this.upd = false;
 				TimeUnit.SECONDS.sleep(1);
-				new Soma();
+				new Soma();	
 			} catch(Exception ex) {
 				JOptionPane.showMessageDialog(null, ex);
 			}
 		} else if (e.getSource() == bSub) {
-			// SubtraÃ§Ã£o
+			// Subtração
 			try {
+				this.upd = false;
 				TimeUnit.SECONDS.sleep(1);
 				new Subtracao();
 			} catch(Exception ex) {
 				JOptionPane.showMessageDialog(null, ex);
 			}
 		} else if (e.getSource() == bMult) {
-			// MultiplicaÃ§Ã£o
+			// Multiplicação
 			try {
+				this.upd = false;
 				TimeUnit.SECONDS.sleep(1);
 				new Multiplicacao();
 			} catch(Exception ex) {
 				JOptionPane.showMessageDialog(null, ex);
 			}
 		} else if (e.getSource() == bDiv) {
-			// DivisÃ£o
+			// Divisão
 			try {
+				this.upd = false;
 				TimeUnit.SECONDS.sleep(1);
 				new Divisao();
+			} catch(Exception ex) {
+				JOptionPane.showMessageDialog(null, ex);
+			}
+		} else if (e.getSource() == bRaiz) {
+			// Raíz
+			try {
+				this.upd = false;
+				TimeUnit.SECONDS.sleep(1);
+				new Raiz();
 			} catch(Exception ex) {
 				JOptionPane.showMessageDialog(null, ex);
 			}
@@ -63,7 +79,7 @@ public class Menu extends JFrame implements ActionListener {
 	
 	public Menu() throws InterruptedException {
 		setTitle("Calculadora");
-		setSize(500, 500);
+		setSize(500, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -74,20 +90,24 @@ public class Menu extends JFrame implements ActionListener {
 		bSub.setBounds(150, 120, 200, 50);
 		bMult.setBounds(150, 200, 200, 50);
 		bDiv.setBounds(150, 280, 200, 50);
-		bSair.setBounds(200, 370, 100, 50);
+		bRaiz.setBounds(150, 360, 200, 50);
+		bSair.setBounds(200, 450, 100, 50);
 		add(bSom);
 		add(bSub);
 		add(bMult);
 		add(bDiv);
+		add(bRaiz);
 		add(bSair);
 		
 		bSom.addActionListener(this);
 		bSub.addActionListener(this);
 		bMult.addActionListener(this);
 		bDiv.addActionListener(this);
+		bRaiz.addActionListener(this);
 		bSair.addActionListener(this);
 		
-		while (true) {
+		this.upd = true;
+		while (this.upd) {
 			Update();
 			TimeUnit.SECONDS.sleep(1);
 		}
@@ -116,9 +136,12 @@ public class Menu extends JFrame implements ActionListener {
 			} else if (op.equals("divisao")) {
 				TimeUnit.SECONDS.sleep(1);
 				new Divisao();
+			} else if (op.equals("raiz")) {
+				TimeUnit.SECONDS.sleep(1);
+				new Raiz();
 			} 
 		} else {
-			System.out.println("Sem interaÃ§Ãµes");
+			System.out.println("Sem interações");
 		}
 		
 		

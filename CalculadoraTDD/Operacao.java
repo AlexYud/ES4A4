@@ -26,6 +26,8 @@ public abstract class Operacao {
 			this.operacao = "multiplicacao";
 		} else if (this.getClass().toString().equals("class Caculadora.Divisao")) {
 			this.operacao = "divisao";
+		} else if (this.getClass().toString().equals("class Caculadora.Raiz")) {
+			this.operacao = "raiz";
 		}
 		
 		HttpClient client = HttpClient.newHttpClient();
@@ -46,20 +48,24 @@ public abstract class Operacao {
 			try {
 				TimeUnit.SECONDS.sleep(1);
 				Update();
-				this.primeiroNum = Double.parseDouble(JOptionPane.showInputDialog("Digite um nÃºmero", this.primeiroNum));
+				this.primeiroNum = Double.parseDouble(JOptionPane.showInputDialog("Digite um número", this.primeiroNum));
 				if (arr.length < 33) {
 					HttpRequest request2 = HttpRequest.newBuilder().uri(URI.create(String.format("https://dweet.io/dweet/for/coopcalcDarkEclipse?op=%s&num1=\'%s", this.operacao, (int)this.primeiroNum))).build();
 					var body2 = client.sendAsync(request2, HttpResponse.BodyHandlers.ofString())
 							.thenApply(HttpResponse::body)
 							.join();
 				}
+				if (this.getClass().toString().equals("class Caculadora.Raiz")) {
+					reply = JOptionPane.showConfirmDialog(null, "Confirmar valor? (" + primeiroNum + ")", "Confirmação", JOptionPane.YES_NO_OPTION);
+					break;
+				}
 				Update2();
-				this.segundoNum = Double.parseDouble(JOptionPane.showInputDialog("Digite mais um nÃºmero", this.segundoNum));
+				this.segundoNum = Double.parseDouble(JOptionPane.showInputDialog("Digite mais um número", this.segundoNum));
 				HttpRequest request6 = HttpRequest.newBuilder().uri(URI.create(String.format("https://dweet.io/dweet/for/coopcalcDarkEclipse?op=%s&num1=\'%s&num2=\'%s", this.operacao, (int)this.primeiroNum, (int)this.segundoNum))).build();
 				var body6 = client.sendAsync(request6, HttpResponse.BodyHandlers.ofString())
 						.thenApply(HttpResponse::body)
 						.join();
-				reply = JOptionPane.showConfirmDialog(null, "Confirmar valores? (" + primeiroNum + " | " + segundoNum + ")", "ConfirmaÃ§Ã£o", JOptionPane.YES_NO_OPTION);
+				reply = JOptionPane.showConfirmDialog(null, "Confirmar valores? (" + primeiroNum + " | " + segundoNum + ")", "Confirmação", JOptionPane.YES_NO_OPTION);
 			} catch(Exception er) {
 				System.out.println(er);
 			}

@@ -7,11 +7,11 @@ import java.net.http.HttpResponse;
 
 import javax.swing.JOptionPane;
 
-public class Divisao extends Operacao {
-	
-	public Divisao() {
+public class Raiz extends Operacao {
+
+	public Raiz() {
 		// Calculo
-		this.resultado = this.primeiroNum / this.segundoNum;
+		this.resultado = Math.sqrt(this.primeiroNum);
 		// Resultado
 		JOptionPane.showMessageDialog(null, "Resultado: " + this.resultado);
 		HttpClient client = HttpClient.newHttpClient();
@@ -20,5 +20,5 @@ public class Divisao extends Operacao {
 			.thenApply(HttpResponse::body)
 			.join();
 	}
-	
+    	
 }
